@@ -42,12 +42,19 @@ function getRequestObject() {
         httpRequest = new XMLHttpRequest();
     }
     catch (requestError) {
+        document.getElementById("zipset").style.visibility = "visible";
         document.getElementById("csset").style.visibility = "visible";
+        var germany = document.getElementById("germany");
+        var us = document.getElementById("us");
         var zip = document.getElementById("zip").value;
         if (zip.addEventListener) {
+            germany.removeEventListener("click", checkButtons,false);
+            us.removeEventListener("click", checkButtons,false);
             zip.removeEventListener("keyup", checkInput, false);
         }
         else if (zip.detachEvent) {
+            germany.detachEvent("onclick", checkButtons);
+            us.detachEvent("onclick", checkButtons);
             zip.detachEvent("onkeyup", checkInput);
         }
 
